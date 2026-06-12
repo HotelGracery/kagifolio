@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#EEF4EC" />
-<title>Kagimori｜密碼管理</title>
+<title>Kagimori｜パスワード管理</title>
 
 <!-- 主畫面アイコン / PWA -->
 <link rel="manifest" href="manifest.json" />
@@ -227,7 +227,7 @@
   <header class="topbar">
     <div class="brand">
       <h1>Kagimori</h1>
-      <span>密碼管理</span>
+      <span>パスワード管理</span>
     </div>
     <button class="icon-btn" id="settingsBtn" aria-label="設定">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -236,7 +236,7 @@
 
   <div class="search">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="searchInput" type="text" placeholder="搜尋名稱、帳號…" autocomplete="off" />
+    <input id="searchInput" type="text" placeholder="名前・IDで検索…" autocomplete="off" />
   </div>
 
   <div class="chips" id="chips"></div>
@@ -249,38 +249,38 @@
 <!-- add / edit sheet -->
 <div class="scrim" id="editScrim">
   <div class="sheet">
-    <h2 id="editTitle">新增帳號</h2>
+    <h2 id="editTitle">新規追加</h2>
     <div class="form-row">
-      <label>分類</label>
+      <label>カテゴリー</label>
       <div class="seg" id="catSeg"></div>
     </div>
     <div class="form-row">
-      <label>名稱（網站／服務）</label>
-      <input class="input" id="fName" placeholder="例：玉山銀行、Gmail、Amazon" />
+      <label>名前（サイト・サービス）</label>
+      <input class="input" id="fName" placeholder="例：〇〇銀行、Gmail、Amazon" />
     </div>
     <div class="form-row" id="rowUserid" style="display:none">
-      <label>用戶代號</label>
-      <input class="input" id="fUserid" placeholder="網路銀行登入用戶代號" autocomplete="off" />
+      <label>ユーザー番号</label>
+      <input class="input" id="fUserid" placeholder="ネットバンキングのユーザー番号" autocomplete="off" />
     </div>
     <div class="form-row">
-      <label>帳號 / Email</label>
-      <input class="input" id="fAccount" placeholder="帳號、信箱或會員編號" autocomplete="off" />
+      <label>ID / メール</label>
+      <input class="input" id="fAccount" placeholder="ID・メール・会員番号" autocomplete="off" />
     </div>
     <div class="form-row">
-      <label>密碼</label>
-      <input class="input" id="fPass" placeholder="密碼" autocomplete="off" />
+      <label>パスワード</label>
+      <input class="input" id="fPass" placeholder="パスワード" autocomplete="off" />
     </div>
     <div class="form-row">
-      <label>網址（可留空）</label>
+      <label>URL（任意）</label>
       <input class="input" id="fUrl" placeholder="https://…" autocomplete="off" />
     </div>
     <div class="form-row">
-      <label>備註（可留空）</label>
-      <input class="input" id="fNote" placeholder="安全提示問題、分行、卡號末四碼…" autocomplete="off" />
+      <label>メモ（任意）</label>
+      <input class="input" id="fNote" placeholder="秘密の質問・支店・カード下4桁…" autocomplete="off" />
     </div>
     <div class="sheet-actions">
-      <button class="btn subtle" id="editCancel">取消</button>
-      <button class="btn primary" id="editSave">儲存</button>
+      <button class="btn subtle" id="editCancel">キャンセル</button>
+      <button class="btn primary" id="editSave">保存</button>
     </div>
   </div>
 </div>
@@ -292,45 +292,46 @@
 
     <div class="set-row" id="lockRow">
       <div>
-        <div class="l" id="lockLabel">設定主密碼鎖</div>
-        <div class="d" id="lockDesc">開啟後資料會加密保存，每次開啟都要輸入主密碼才能解鎖。</div>
+        <div class="l" id="lockLabel">マスターパスワードを設定</div>
+        <div class="d" id="lockDesc">オンにするとデータを暗号化して保存し、起動のたびにマスターパスワードでの解除が必要になります。</div>
       </div>
-      <div class="set-go" id="lockGo">開啟</div>
+      <div class="set-go" id="lockGo">オン</div>
     </div>
 
     <div class="set-row" id="exportRow">
       <div>
-        <div class="l">匯出備份</div>
-        <div class="d">下載一份 JSON 備份，換手機或清快取前先存一份比較安心。</div>
+        <div class="l">バックアップを書き出し</div>
+        <div class="d">JSONバックアップを保存します。機種変更やキャッシュ削除の前に保存しておくと安心です。</div>
       </div>
-      <div class="set-go">匯出</div>
+      <div class="set-go">書き出し</div>
     </div>
 
     <div class="set-row" id="importRow">
       <div>
-        <div class="l">匯入備份</div>
-        <div class="d">從之前的 JSON 備份還原資料（會覆蓋目前的內容）。</div>
+        <div class="l">バックアップを読み込み</div>
+        <div class="d">以前のJSONバックアップから復元します（現在の内容は上書きされます）。</div>
       </div>
-      <div class="set-go">匯入</div>
+      <div class="set-go">読み込み</div>
     </div>
     <input type="file" id="importFile" accept="application/json,.json" hidden />
 
     <div class="sheet-actions" style="margin-top:16px">
-      <button class="btn subtle" id="setClose">關閉</button>
+      <button class="btn subtle" id="setClose">閉じる</button>
     </div>
 
-    <div class="ver">Kagimori v2026.06.12.05<br>Made with ♡ by めいぷりん</div>
+    <div class="ver">Kagimori v2026.06.12.06<br>Made with ♡ by めいぷりん</div>
   </div>
 </div>
 
 <!-- lock screen -->
 <div class="lock" id="lockScreen">
   <div class="key"><svg width="62" height="62" viewBox="0 0 64 64" fill="#88AC83" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="29" y="31" width="6" height="22" rx="3"/><rect x="35" y="44" width="7" height="3.6" rx="1.5"/><rect x="35" y="50" width="5" height="3.6" rx="1.5"/><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" transform="translate(18.4,8) scale(0.85)"/></svg></div>
-  <h2 id="lockHeading">輸入主密碼</h2>
-  <p id="lockHint">解鎖你的 Kagi</p>
-  <input id="lockInput" type="password" placeholder="主密碼" autocomplete="off" />
-  <input id="lockInput2" type="password" placeholder="再輸入一次" autocomplete="off" style="margin-top:10px; display:none" />
-  <button class="btn primary" id="lockBtn">解鎖</button>
+  <h2 id="lockHeading">マスターパスワードを入力</h2>
+  <p id="lockHint">Kagimoriのロックを解除</p>
+  <input id="lockInput" type="password" inputmode="numeric" maxlength="4" placeholder="数字4桁" autocomplete="off" />
+  <input id="lockInput2" type="password" inputmode="numeric" maxlength="4" placeholder="もう一度入力" autocomplete="off" style="margin-top:10px; display:none" />
+  <button class="btn primary" id="lockBtn">ロック解除</button>
+  <button class="btn subtle" id="lockCancel" style="display:none">キャンセル</button>
   <div class="err" id="lockErr"></div>
 </div>
 
@@ -343,11 +344,12 @@
   /* ---------------- config ---------------- */
   var CATS = [
     {id:"bank",  name:"銀行"},
-    {id:"email", name:"Email"},
-    {id:"web",   name:"網站"},
-    {id:"shop",  name:"購物"},
-    {id:"sns",   name:"社群"},
-    {id:"other", name:"其他"}
+    {id:"email", name:"メール"},
+    {id:"web",   name:"ウェブ"},
+    {id:"shop",  name:"ショッピング"},
+    {id:"sns",   name:"SNS"},
+    {id:"airline", name:"航空"},
+    {id:"other", name:"その他"}
   ];
   var K_MODE="passfolio.mode";   // "plain" | "enc"
   var K_DATA="passfolio.data";   // plain JSON or {salt,iv,ct}
@@ -365,7 +367,7 @@
   var $ = function(id){ return document.getElementById(id); };
   function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
   function esc(s){ return (s||"").replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
-  function catName(id){ var c=CATS.find(function(x){return x.id===id;}); return c?c.name:"其他"; }
+  function catName(id){ var c=CATS.find(function(x){return x.id===id;}); return c?c.name:"その他"; }
   function monthBadge(ts){ if(!ts) return ""; var d=new Date(ts); return (d.getMonth()+1)+"月更新"; }
 
   function toast(msg){
@@ -375,7 +377,7 @@
 
   /* ---------------- clipboard (with file:// fallback) ---------------- */
   function copy(text){
-    function done(){ toast("已複製 ✓"); }
+    function done(){ toast("コピーしました"); }
     if(navigator.clipboard && window.isSecureContext){
       navigator.clipboard.writeText(text).then(done).catch(fallback);
     } else { fallback(); }
@@ -383,7 +385,7 @@
       var ta=document.createElement("textarea");
       ta.value=text; ta.style.position="fixed"; ta.style.opacity="0";
       document.body.appendChild(ta); ta.focus(); ta.select();
-      try{ document.execCommand("copy"); done(); }catch(e){ toast("複製失敗，請手動長按複製"); }
+      try{ document.execCommand("copy"); done(); }catch(e){ toast("コピーに失敗しました。長押しでコピーしてください"); }
       document.body.removeChild(ta);
     }
   }
@@ -419,10 +421,10 @@
     if(mode==="enc" && subtle && window._pf_pw){
       encryptStore().then(function(payload){
         localStorage.setItem(K_DATA, JSON.stringify(payload));
-      }).catch(function(){ toast("加密儲存失敗"); });
+      }).catch(function(){ toast("暗号化の保存に失敗しました"); });
     } else {
       try{ localStorage.setItem(K_DATA, JSON.stringify(entries)); }
-      catch(e){ toast("儲存失敗（瀏覽器空間）"); }
+      catch(e){ toast("保存に失敗しました（ブラウザの空き容量）"); }
     }
   }
 
@@ -437,7 +439,7 @@
     var box=$("chips");
     var counts={all:entries.length};
     CATS.forEach(function(c){ counts[c.id]=entries.filter(function(e){return e.cat===c.id;}).length; });
-    var list=[{id:"all",name:"全部"}].concat(CATS);
+    var list=[{id:"all",name:"すべて"}].concat(CATS);
     box.innerHTML="";
     list.forEach(function(c){
       if(c.id!=="all" && counts[c.id]===0) return; // hide empty categories
@@ -465,8 +467,8 @@
     if(list.length===0){
       box.innerHTML='<div class="empty"><div class="em"><svg width="58" height="58" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 58 V30" stroke="#9DBE97" stroke-width="3" stroke-linecap="round"/><path d="M32 34 C20 34 12 26 12 14 C26 14 33 22 32 34 Z" fill="#C7DEC1" stroke="#9DBE97" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 40 C44 40 52 32 52 20 C38 20 31 28 32 40 Z" fill="#B6D2AF" stroke="#9DBE97" stroke-width="2.5" stroke-linejoin="round"/></svg></div>'+
         (entries.length===0
-          ? '<p>還沒有任何帳號</p><p class="hint">點右下角的 ＋ 新增第一筆吧</p>'
-          : '<p>找不到符合的帳號</p><p class="hint">換個關鍵字或分類試試</p>')+
+          ? '<p>まだ登録がありません</p><p class="hint">右下の＋から最初の1件を追加してみてください</p>'
+          : '<p>一致する項目が見つかりません</p><p class="hint">キーワードやカテゴリーを変えてお試しください</p>')+
         "</div>";
       return;
     }
@@ -485,32 +487,32 @@
             '</div>'+
             '<div class="card-sub">'+esc(catName(e.cat))+(e.note?'｜'+esc(e.note):'')+'</div>'+
           '</div>'+
-          '<button class="open-btn'+(hasUrl?'':' hidden')+'" data-open="1" aria-label="開啟網站">'+
+          '<button class="open-btn'+(hasUrl?'':' hidden')+'" data-open="1" aria-label="サイトを開く">'+
             '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>'+
           '</button>'+
         '</div>'+
         '<div class="fields">'+
           (e.userid?
           '<div class="field">'+
-            '<span class="field-label">用戶代號</span>'+
+            '<span class="field-label">ユーザー番号</span>'+
             '<span class="field-val">'+esc(e.userid)+'</span>'+
-            '<button class="mini-btn" data-cp="userid" aria-label="複製用戶代號">'+copyIcon()+'</button>'+
+            '<button class="mini-btn" data-cp="userid" aria-label="ユーザー番号をコピー">'+copyIcon()+'</button>'+
           '</div>' : '')+
           '<div class="field">'+
-            '<span class="field-label">帳號</span>'+
+            '<span class="field-label">ID</span>'+
             '<span class="field-val">'+esc(e.account||"—")+'</span>'+
-            (e.account?'<button class="mini-btn" data-cp="account" aria-label="複製帳號">'+copyIcon()+'</button>':'')+
+            (e.account?'<button class="mini-btn" data-cp="account" aria-label="IDをコピー">'+copyIcon()+'</button>':'')+
           '</div>'+
           '<div class="field">'+
-            '<span class="field-label">密碼</span>'+
+            '<span class="field-label">パスワード</span>'+
             '<span class="field-val dots" data-pw>'+dots(e.pass)+'</span>'+
-            '<button class="mini-btn" data-eye aria-label="顯示密碼">'+eyeIcon()+'</button>'+
-            '<button class="mini-btn" data-cp="pass" aria-label="複製密碼">'+copyIcon()+'</button>'+
+            '<button class="mini-btn" data-eye aria-label="パスワードを表示">'+eyeIcon()+'</button>'+
+            '<button class="mini-btn" data-cp="pass" aria-label="パスワードをコピー">'+copyIcon()+'</button>'+
           '</div>'+
         '</div>'+
         '<div class="card-foot">'+
-          '<button class="foot-btn" data-edit>編輯</button>'+
-          '<button class="foot-btn del" data-del>刪除</button>'+
+          '<button class="foot-btn" data-edit>編集</button>'+
+          '<button class="foot-btn del" data-del>削除</button>'+
         '</div>';
 
       // events
@@ -553,7 +555,7 @@
     editingId=id;
     var e = id? entries.find(function(x){return x.id===id;}) : null;
     formCat = e? e.cat : (activeCat!=="all"?activeCat:"web");
-    $("editTitle").textContent = e? "編輯帳號":"新增帳號";
+    $("editTitle").textContent = e? "編集":"新規追加";
     $("fName").value=e?e.name:""; $("fAccount").value=e?e.account:"";
     $("fUserid").value=e?(e.userid||""):"";
     $("fPass").value=e?e.pass:""; $("fUrl").value=e?(e.url||""):""; $("fNote").value=e?(e.note||""):"";
@@ -563,7 +565,7 @@
   function closeEdit(){ $("editScrim").classList.remove("show"); editingId=null; }
   function saveEdit(){
     var name=$("fName").value.trim();
-    if(!name){ toast("請至少填名稱"); $("fName").focus(); return; }
+    if(!name){ toast("名前を入力してください"); $("fName").focus(); return; }
     var obj={
       name:name, account:$("fAccount").value.trim(), pass:$("fPass").value,
       userid:(formCat==="bank")? $("fUserid").value.trim() : "",
@@ -575,13 +577,13 @@
     } else {
       obj.id=uid(); obj.created=Date.now(); entries.push(obj);
     }
-    save(); closeEdit(); renderChips(); renderVault(); toast("已儲存 ✓");
+    save(); closeEdit(); renderChips(); renderVault(); toast("保存しました");
   }
   function delEntry(id){
     var e=entries.find(function(x){return x.id===id;});
-    if(!confirm("確定要刪除「"+(e?e.name:"")+"」嗎？\n刪掉就找不回來囉。")) return;
+    if(!confirm("「"+(e?e.name:"")+"」を削除しますか？\n削除すると元に戻せません。")) return;
     entries=entries.filter(function(x){return x.id!==id;});
-    save(); renderChips(); renderVault(); toast("已刪除");
+    save(); renderChips(); renderVault(); toast("削除しました");
   }
 
   /* ---------------- password generator ---------------- */
@@ -600,7 +602,7 @@
     a.href=URL.createObjectURL(blob);
     a.download="passfolio-backup-"+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+".json";
     a.click(); URL.revokeObjectURL(a.href);
-    toast("已匯出備份 ✓");
+    toast("バックアップを書き出しました");
   }
   function importData(file){
     var r=new FileReader();
@@ -609,11 +611,11 @@
         var obj=JSON.parse(r.result);
         var arr=Array.isArray(obj)?obj:obj.entries;
         if(!Array.isArray(arr)) throw 0;
-        if(!confirm("匯入會覆蓋目前全部資料，確定嗎？")) return;
+        if(!confirm("読み込むと現在のデータがすべて上書きされます。よろしいですか？")) return;
         entries=arr.map(function(e){ e.id=e.id||uid(); return e; });
         save(); renderChips(); renderVault(); $("setScrim").classList.remove("show");
-        toast("已匯入 "+entries.length+" 筆");
-      }catch(err){ toast("檔案格式不正確"); }
+        toast(entries.length+"件を読み込みました");
+      }catch(err){ toast("ファイル形式が正しくありません"); }
     };
     r.readAsText(file);
   }
@@ -622,10 +624,11 @@
   function isLocked(){ return (localStorage.getItem(K_MODE)==="enc"); }
 
   function showUnlock(){
-    $("lockHeading").textContent="輸入主密碼";
-    $("lockHint").textContent="解鎖你的 Kagimori";
+    $("lockHeading").textContent="マスターパスワードを入力";
+    $("lockHint").textContent="Kagimoriのロックを解除";
     $("lockInput2").style.display="none";
-    $("lockBtn").textContent="解鎖";
+    $("lockCancel").style.display="none";
+    $("lockBtn").textContent="ロック解除";
     $("lockErr").textContent="";
     $("lockInput").value="";
     $("lockScreen").classList.add("show");
@@ -645,52 +648,58 @@
         window._pf_pw=pw; cryptoKey=true;
         $("lockScreen").classList.remove("show");
         boot2();
-      }).catch(function(){ $("lockErr").textContent="主密碼不對，再試一次"; });
-    }catch(e){ $("lockErr").textContent="資料讀取失敗"; }
+      }).catch(function(){ $("lockErr").textContent="パスワードが違います。もう一度お試しください"; });
+    }catch(e){ $("lockErr").textContent="データの読み込みに失敗しました"; }
   }
 
   function setupMasterPassword(){
     $("setScrim").classList.remove("show");
-    $("lockHeading").textContent="設定主密碼";
-    $("lockHint").textContent="之後每次開啟都要用它解鎖（請記牢，忘了無法復原）";
+    $("lockHeading").textContent="マスターパスワードを設定";
+    $("lockHint").textContent="起動のたびに解除に使います（忘れると復元できません。お忘れなく）";
     $("lockInput").value=""; $("lockInput2").value="";
     $("lockInput2").style.display="block";
-    $("lockBtn").textContent="設定並加密";
+    $("lockCancel").style.display="block";
+    $("lockBtn").textContent="設定して暗号化";
     $("lockErr").textContent="";
     $("lockScreen").classList.add("show");
     setTimeout(function(){ $("lockInput").focus(); },200);
+    $("lockCancel").onclick=function(){
+      $("lockScreen").classList.remove("show");
+      $("lockCancel").style.display="none";
+    };
     $("lockBtn").onclick=function(){
       var a=$("lockInput").value, b=$("lockInput2").value;
-      if(a.length<4){ $("lockErr").textContent="主密碼至少 4 個字"; return; }
-      if(a!==b){ $("lockErr").textContent="兩次輸入不一樣"; return; }
+      if(!/^\d{4}$/.test(a)){ $("lockErr").textContent="パスワードは数字4桁で入力してください"; return; }
+      if(a!==b){ $("lockErr").textContent="入力が一致しません"; return; }
       window._pf_pw=a;
       localStorage.setItem(K_MODE,"enc");
       save();
       $("lockScreen").classList.remove("show");
+      $("lockCancel").style.display="none";
       refreshLockRow();
-      toast("已開啟主密碼鎖");
+      toast("マスターパスワードをオンにしました");
     };
   }
   function disableMasterPassword(){
-    if(!confirm("關閉主密碼鎖後，資料會以未加密方式保存，確定嗎？")) return;
+    if(!confirm("マスターパスワードをオフにすると、データは暗号化されずに保存されます。よろしいですか？")) return;
     localStorage.setItem(K_MODE,"plain");
     window._pf_pw=null; cryptoKey=null;
     save();  // saves plain
     refreshLockRow();
-    toast("已關閉主密碼鎖");
+    toast("マスターパスワードをオフにしました");
   }
   function refreshLockRow(){
     if(isLocked()){
-      $("lockLabel").textContent="主密碼鎖（已開啟）";
-      $("lockDesc").textContent="資料已加密保存。點右側可關閉。";
-      $("lockGo").textContent="關閉";
+      $("lockLabel").textContent="マスターパスワード（オン）";
+      $("lockDesc").textContent="データは暗号化して保存されています。右側からオフにできます。";
+      $("lockGo").textContent="オフ";
       $("lockGo").onclick=disableMasterPassword;
     } else {
-      $("lockLabel").textContent="設定主密碼鎖";
-      $("lockDesc").textContent= subtle? "開啟後資料會加密保存，每次開啟都要輸入主密碼才能解鎖。"
-                                       : "此環境不支援加密（需用 https 或部署後使用）。";
-      $("lockGo").textContent="開啟";
-      $("lockGo").onclick= subtle? setupMasterPassword : function(){ toast("請部署到 https 後再開啟"); };
+      $("lockLabel").textContent="マスターパスワードを設定";
+      $("lockDesc").textContent= subtle? "オンにするとデータを暗号化して保存し、起動のたびにマスターパスワードでの解除が必要になります。"
+                                       : "この環境では暗号化が使えません（httpsまたはデプロイ後にご利用ください）。";
+      $("lockGo").textContent="オン";
+      $("lockGo").onclick= subtle? setupMasterPassword : function(){ toast("httpsでデプロイ後にオンにしてください"); };
     }
   }
 
@@ -712,6 +721,9 @@
 
     $("lockInput").addEventListener("keydown",function(e){ if(e.key==="Enter") $("lockBtn").click(); });
     $("lockInput2").addEventListener("keydown",function(e){ if(e.key==="Enter") $("lockBtn").click(); });
+    [$("lockInput"),$("lockInput2")].forEach(function(el){
+      el.addEventListener("input",function(){ this.value=this.value.replace(/\D/g,"").slice(0,4); });
+    });
   }
 
   function boot2(){ renderChips(); renderVault(); }
