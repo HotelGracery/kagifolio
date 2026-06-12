@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#EEF4EC" />
-<title>Kagi｜密碼管理</title>
+<title>Kagimori｜密碼管理</title>
 
 <!-- 主畫面アイコン / PWA -->
 <link rel="manifest" href="manifest.json" />
@@ -12,7 +12,7 @@
 <link rel="icon" type="image/png" href="icon-192.png" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Kagi" />
+<meta name="apple-mobile-web-app-title" content="Kagimori" />
 <meta name="mobile-web-app-capable" content="yes" />
 <style>
   :root{
@@ -112,10 +112,10 @@
   .field + .field{border-top:1px solid var(--border)}
   .field-label{font-size:15px; color:var(--green-text); flex:0 0 auto; font-weight:600}
   .field-val{
-    flex:1; text-align:right; font-family:var(--mono); font-size:14px; font-weight:700;
-    color:var(--ink); letter-spacing:.2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    flex:1; text-align:right; font-family:var(--mono); font-size:12.5px; font-weight:700;
+    color:var(--ink); letter-spacing:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
-  .field-val.dots{letter-spacing:2px; font-size:16px; color:var(--ink-soft)}
+  .field-val.dots{letter-spacing:2px; font-size:14px; color:var(--ink-soft)}
   .mini-btn{
     flex:0 0 auto; width:38px; height:38px; border-radius:11px;
     background:#EAF2E8; color:var(--green-deep);
@@ -226,7 +226,7 @@
 <div class="wrap">
   <header class="topbar">
     <div class="brand">
-      <h1>Kagi</h1>
+      <h1>Kagimori</h1>
       <span>密碼管理</span>
     </div>
     <button class="icon-btn" id="settingsBtn" aria-label="設定">
@@ -319,7 +319,7 @@
       <button class="btn subtle" id="setClose">關閉</button>
     </div>
 
-    <div class="ver">Kagi v2026.06.12.03<br>Made with ♡ by めいぷりん</div>
+    <div class="ver">Kagimori v2026.06.12.05<br>Made with ♡ by めいぷりん</div>
   </div>
 </div>
 
@@ -623,7 +623,7 @@
 
   function showUnlock(){
     $("lockHeading").textContent="輸入主密碼";
-    $("lockHint").textContent="解鎖你的 Kagi";
+    $("lockHint").textContent="解鎖你的 Kagimori";
     $("lockInput2").style.display="none";
     $("lockBtn").textContent="解鎖";
     $("lockErr").textContent="";
