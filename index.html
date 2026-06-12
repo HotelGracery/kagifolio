@@ -112,10 +112,10 @@
   .field + .field{border-top:1px solid var(--border)}
   .field-label{font-size:15px; color:var(--green-text); flex:0 0 auto; font-weight:600}
   .field-val{
-    flex:1; text-align:right; font-family:var(--mono); font-size:19px; font-weight:700;
-    color:var(--ink); letter-spacing:.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    flex:1; text-align:right; font-family:var(--mono); font-size:14px; font-weight:700;
+    color:var(--ink); letter-spacing:.2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
-  .field-val.dots{letter-spacing:3px; font-size:22px; color:var(--ink-soft)}
+  .field-val.dots{letter-spacing:2px; font-size:16px; color:var(--ink-soft)}
   .mini-btn{
     flex:0 0 auto; width:38px; height:38px; border-radius:11px;
     background:#EAF2E8; color:var(--green-deep);
@@ -217,7 +217,7 @@
     border-radius:15px; text-align:center; background:var(--card); outline:none; font-size:18px; letter-spacing:2px;
   }
   .lock input:focus{border-color:var(--green)}
-  .lock .btn{max-width:300px; width:100%; margin-top:14px}
+  .lock .btn{flex:0 0 auto; max-width:300px; width:100%; margin-top:14px}
   .lock .err{color:var(--danger); font-size:13px; min-height:18px; margin-top:10px; font-weight:600}
 </style>
 </head>
@@ -258,16 +258,17 @@
       <label>名稱（網站／服務）</label>
       <input class="input" id="fName" placeholder="例：玉山銀行、Gmail、Amazon" />
     </div>
+    <div class="form-row" id="rowUserid" style="display:none">
+      <label>用戶代號</label>
+      <input class="input" id="fUserid" placeholder="網路銀行登入用戶代號" autocomplete="off" />
+    </div>
     <div class="form-row">
       <label>帳號 / Email</label>
       <input class="input" id="fAccount" placeholder="帳號、信箱或會員編號" autocomplete="off" />
     </div>
     <div class="form-row">
       <label>密碼</label>
-      <div class="pw-wrap">
-        <input class="input" id="fPass" placeholder="密碼" autocomplete="off" />
-        <button class="ghost" id="genBtn">產生</button>
-      </div>
+      <input class="input" id="fPass" placeholder="密碼" autocomplete="off" />
     </div>
     <div class="form-row">
       <label>網址（可留空）</label>
@@ -318,15 +319,15 @@
       <button class="btn subtle" id="setClose">關閉</button>
     </div>
 
-    <div class="ver">Kagi v2026.06.12.02<br>Made with ♡ by めいぷりん</div>
+    <div class="ver">Kagi v2026.06.12.03<br>Made with ♡ by めいぷりん</div>
   </div>
 </div>
 
 <!-- lock screen -->
 <div class="lock" id="lockScreen">
-  <div class="key">🗝️</div>
+  <div class="key"><svg width="62" height="62" viewBox="0 0 64 64" fill="#88AC83" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="29" y="31" width="6" height="22" rx="3"/><rect x="35" y="44" width="7" height="3.6" rx="1.5"/><rect x="35" y="50" width="5" height="3.6" rx="1.5"/><path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" transform="translate(18.4,8) scale(0.85)"/></svg></div>
   <h2 id="lockHeading">輸入主密碼</h2>
-  <p id="lockHint">解鎖你的 PassFolio</p>
+  <p id="lockHint">解鎖你的 Kagi</p>
   <input id="lockInput" type="password" placeholder="主密碼" autocomplete="off" />
   <input id="lockInput2" type="password" placeholder="再輸入一次" autocomplete="off" style="margin-top:10px; display:none" />
   <button class="btn primary" id="lockBtn">解鎖</button>
@@ -462,7 +463,7 @@
     }).sort(function(a,b){ return (b.updated||0)-(a.updated||0); });
 
     if(list.length===0){
-      box.innerHTML='<div class="empty"><div class="em">🌿</div>'+
+      box.innerHTML='<div class="empty"><div class="em"><svg width="58" height="58" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 58 V30" stroke="#9DBE97" stroke-width="3" stroke-linecap="round"/><path d="M32 34 C20 34 12 26 12 14 C26 14 33 22 32 34 Z" fill="#C7DEC1" stroke="#9DBE97" stroke-width="2.5" stroke-linejoin="round"/><path d="M32 40 C44 40 52 32 52 20 C38 20 31 28 32 40 Z" fill="#B6D2AF" stroke="#9DBE97" stroke-width="2.5" stroke-linejoin="round"/></svg></div>'+
         (entries.length===0
           ? '<p>還沒有任何帳號</p><p class="hint">點右下角的 ＋ 新增第一筆吧</p>'
           : '<p>找不到符合的帳號</p><p class="hint">換個關鍵字或分類試試</p>')+
@@ -489,6 +490,12 @@
           '</button>'+
         '</div>'+
         '<div class="fields">'+
+          (e.userid?
+          '<div class="field">'+
+            '<span class="field-label">用戶代號</span>'+
+            '<span class="field-val">'+esc(e.userid)+'</span>'+
+            '<button class="mini-btn" data-cp="userid" aria-label="複製用戶代號">'+copyIcon()+'</button>'+
+          '</div>' : '')+
           '<div class="field">'+
             '<span class="field-label">帳號</span>'+
             '<span class="field-val">'+esc(e.account||"—")+'</span>'+
@@ -513,7 +520,10 @@
         pwEl.classList.toggle("dots", !shown);
       };
       card.querySelectorAll("[data-cp]").forEach(function(btn){
-        btn.onclick=function(){ copy(btn.getAttribute("data-cp")==="pass"? (e.pass||"") : (e.account||"")); };
+        btn.onclick=function(){
+          var k=btn.getAttribute("data-cp");
+          copy(k==="pass"? (e.pass||"") : k==="userid"? (e.userid||"") : (e.account||""));
+        };
       });
       var ob=card.querySelector("[data-open]");
       if(ob) ob.onclick=function(){ if(hasUrl) window.open(e.url,"_blank","noopener"); };
@@ -529,12 +539,13 @@
   function eyeIcon(){ return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>'; }
 
   /* ---------------- edit sheet ---------------- */
+  function updateBankField(){ $("rowUserid").style.display = (formCat==="bank")?"block":"none"; }
   function renderCatSeg(){
     var seg=$("catSeg"); seg.innerHTML="";
     CATS.forEach(function(c){
       var b=document.createElement("button");
       b.textContent=c.name; b.className=(formCat===c.id?"on":"");
-      b.onclick=function(){ formCat=c.id; renderCatSeg(); };
+      b.onclick=function(){ formCat=c.id; renderCatSeg(); updateBankField(); };
       seg.appendChild(b);
     });
   }
@@ -544,8 +555,9 @@
     formCat = e? e.cat : (activeCat!=="all"?activeCat:"web");
     $("editTitle").textContent = e? "編輯帳號":"新增帳號";
     $("fName").value=e?e.name:""; $("fAccount").value=e?e.account:"";
+    $("fUserid").value=e?(e.userid||""):"";
     $("fPass").value=e?e.pass:""; $("fUrl").value=e?(e.url||""):""; $("fNote").value=e?(e.note||""):"";
-    renderCatSeg();
+    renderCatSeg(); updateBankField();
     $("editScrim").classList.add("show");
   }
   function closeEdit(){ $("editScrim").classList.remove("show"); editingId=null; }
@@ -554,6 +566,7 @@
     if(!name){ toast("請至少填名稱"); $("fName").focus(); return; }
     var obj={
       name:name, account:$("fAccount").value.trim(), pass:$("fPass").value,
+      userid:(formCat==="bank")? $("fUserid").value.trim() : "",
       url:$("fUrl").value.trim(), note:$("fNote").value.trim(), cat:formCat, updated:Date.now()
     };
     if(editingId){
@@ -581,7 +594,7 @@
 
   /* ---------------- export / import ---------------- */
   function exportData(){
-    var blob=new Blob([JSON.stringify({app:"PassFolio",v:1,exported:Date.now(),entries:entries},null,2)],{type:"application/json"});
+    var blob=new Blob([JSON.stringify({app:"Kagi",v:1,exported:Date.now(),entries:entries},null,2)],{type:"application/json"});
     var a=document.createElement("a");
     var d=new Date(), p=function(n){return (n<10?"0":"")+n;};
     a.href=URL.createObjectURL(blob);
@@ -610,7 +623,7 @@
 
   function showUnlock(){
     $("lockHeading").textContent="輸入主密碼";
-    $("lockHint").textContent="解鎖你的 PassFolio";
+    $("lockHint").textContent="解鎖你的 Kagi";
     $("lockInput2").style.display="none";
     $("lockBtn").textContent="解鎖";
     $("lockErr").textContent="";
@@ -655,7 +668,7 @@
       save();
       $("lockScreen").classList.remove("show");
       refreshLockRow();
-      toast("已開啟主密碼鎖 🔒");
+      toast("已開啟主密碼鎖");
     };
   }
   function disableMasterPassword(){
@@ -687,7 +700,6 @@
     $("editCancel").onclick=closeEdit;
     $("editSave").onclick=saveEdit;
     $("editScrim").onclick=function(ev){ if(ev.target===$("editScrim")) closeEdit(); };
-    $("genBtn").onclick=function(){ $("fPass").value=genPassword(); };
 
     $("searchInput").oninput=function(e){ search=e.target.value.trim(); renderVault(); };
 
